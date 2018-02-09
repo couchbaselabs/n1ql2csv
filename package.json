@@ -7,7 +7,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "make build",
-    "postinstall": "make build",
     "watch": "make watch"
   },
   "bin": {
@@ -17,7 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/couchbaselabs/n1ql2csv.git"
   },
-  "author": "Aaron Benton",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/couchbaselabs/n1ql2csv/issues"
