@@ -1,8 +1,13 @@
 // imports
 import commander from 'commander'
 import ora from 'ora'
+import notifier from 'update-notifier'
 import n1ql2csv from './index'
 import { disconnect } from './db'
+import pkg from '../package.json'
+
+notifier({ pkg })
+  .notify()
 
 // setup cli options
 commander
