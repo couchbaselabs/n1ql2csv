@@ -4,13 +4,27 @@ Executes a given N1QL query and exports the results as CSV
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/1p1N1w3o313p1t2I0R1B/Screen%20Recording%202018-02-09%20at%2010.23%20AM.gif?X-CloudApp-Visitor-Id=1639251&v=163cb047)
 
-### Install
+## Install
+
+Install `n1ql2csv` globally 
 
 ```bash
 npm install n1ql2csv -g
 ```
 
-### Usage
+Requires Node, if you don't have node, you can install `nvm`  by issuing the following command.
+
+```bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+```
+
+then
+
+```bash
+nvm install 9
+```
+
+## Usage
 
 ```bash
 n1ql2csv --help
@@ -36,7 +50,7 @@ n1ql2csv --help
     -h, --help           output usage information
 ```
 
-### Example
+## Example
 
 ```bash
 n1ql2csv \
