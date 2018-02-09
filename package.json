@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/bentonam/n1ql2csv#readme",
   "dependencies": {
+    "babel-runtime": "6.26.0",
     "bluebird": "3.5.1",
     "commander": "2.14.1",
     "couchbase": "2.4.3",
