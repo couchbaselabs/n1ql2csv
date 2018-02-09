@@ -1,0 +1,16 @@
+*.apdisk
+*.ap_
+*.log
+*.DS_Store
+*.bak
+*.csv
+.TemporaryItems
+dist
+node_modules
+.eslintcache
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

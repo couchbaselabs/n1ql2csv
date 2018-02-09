@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+  couchbase:
+    image: bentonam/couchbase-docker:enterprise-5.0.1
+    container_name: couchbase
+    ports:
+      - 8091-8094:8091-8094
+      - 11210-11211:11210-11211
+    environment:
+      NODE_TYPE: DEFAULT
+      CLUSTER_USERNAME: Administrator
+      CLUSTER_PASSWORD: password
+      SERVICES: data,index,query
+      CLUSTER_RAMSIZE: 500
+      BUCKET: example
+      ENABLE_FLUSH: 1
+      RBAC_USERNAME: example_user
+      RBAC_PASSWORD: password
+      RBAC_ROLES: admin
+      SAMPLE_BUCKETS: travel-sample
