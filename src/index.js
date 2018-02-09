@@ -2,7 +2,7 @@ import { N1qlQuery } from 'couchbase'
 import json2csv from 'json2csv'
 import path from 'path'
 import fs from 'fs-extra'
-import connect from './db'
+import { connect } from './db'
 
 export default async function n1ql2csv ({
   cluster,
@@ -17,9 +17,15 @@ export default async function n1ql2csv ({
   headers,
 }) {
   // connect to couchbase and execute the query
-  const db = await connect(cluster, bucket, timeout, username, password)
+  const cb = await connect({
+    cluster,
+    bucket,
+    timeout,
+    username,
+    password,
+  })
   const statement = N1qlQuery.fromString(query)
-  const results = await db.queryAsync(statement)
+  const results = await cb.queryAsync(statement)
 
   // output the results to csv file
   const csv = json2csv({

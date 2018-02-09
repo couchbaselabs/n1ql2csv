@@ -9,7 +9,7 @@ let cluster_ref
 let bucket_ref
 
 // lazy load the database connection
-export default async function connect ({
+export async function connect ({
   cluster,
   bucket,
   timeout,
@@ -17,7 +17,7 @@ export default async function connect ({
   password,
 }) {
   // if the bucket hasn't been loaded already, load it
-  if (!bucket) {
+  if (!bucket_ref) {
     // connect and authenticate to the cluster
     cluster_ref = new Cluster(`couchbase://${cluster}?n1ql_timeout=${timeout}`)
     cluster_ref.authenticate(
@@ -29,4 +29,12 @@ export default async function connect ({
     bucket_ref = promisifyAll(bucket_ref)
   }
   return bucket_ref
+}
+
+// lazy load the database connection
+export async function disconnect () {
+  // if the bucket hasn't been loaded already, load it
+  if (bucket_ref) {
+    await bucket_ref.disconnect()
+  }
 }

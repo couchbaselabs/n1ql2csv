@@ -2,6 +2,7 @@
 import commander from 'commander'
 import ora from 'ora'
 import n1ql2csv from './index'
+import { disconnect } from './db'
 
 // setup cli options
 commander
@@ -68,9 +69,11 @@ export default async function () {
   try {
     await n1ql2csv(commander)
     spinner.stop()
+    await disconnect()
     process.exit(0)
   } catch (err) {
     spinner.stop()
+    await disconnect()
     // eslint-disable-next-line no-console
     console.error(`Error: ${err.message}`)
     process.exit(1)
