@@ -6,7 +6,7 @@ Executes a given N1QL query and exports the results as CSV
 
 ## Install
 
-Install `n1ql2csv` globally 
+Install `n1ql2csv` globally
 
 ```bash
 npm install n1ql2csv -g
@@ -38,13 +38,14 @@ n1ql2csv --help
 
     -V, --version        output the version number
     -c, --cluster <s>    The cluster address (default: localhost)
-    -b, --bucket <s>     The bucket to use (default: default)
-    -u, --username <s>   The RBAC username to use (only needed for Couchbase Server 5+)
-    -p, --password <s>   The bucket or RBAC password if applicable
-    -q, --query <s>      A N1QL statement or file path to a N1QL query
-    -o, --output <s>     The destination output file (default: results.csv)
+    -s, --secure <b>     Whether or not to use http(s) (default: false)
+    -p, --port <n>       The query port to use (default: 8093)
+    -u, --username <s>   Cluster Admin or RBAC username (default: Administrator)
+    -p, --password <s>   Cluster Admin or RBAC password (default: password)
+    -s, --statement <s>  A N1QL statement or file path to a N1QL query
+    -o, --output <s>     The destination output file (default: /home/centos/results.csv)
     -x, --overwrite <b>  Overwrite the destination file if it exists already (default: false)
-    -t, --timeout <n>    Timeout in seconds for the query (default: 10)
+    -t, --timeout <n>    Timeout in milliseconds for the query (default: 10000)
     -d, --delimiter <s>  The delimiter to use (default: ,)
     -h, --headers <b>    Whether or not there should be column headers (default: true)
     -h, --help           output usage information
