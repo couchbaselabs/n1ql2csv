@@ -1,7 +1,7 @@
 {
   "name": "n1ql2csv",
   "author": "Aaron Benton",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
