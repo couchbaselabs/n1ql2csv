@@ -1,31 +1,34 @@
-import { N1qlQuery } from 'couchbase'
 import json2csv from 'json2csv'
 import path from 'path'
 import fs from 'fs-extra'
-import { connect } from './db'
+import request from 'request-promise-native'
 
 export default async function n1ql2csv ({
   cluster,
-  bucket,
+  secure,
+  port,
   username,
   password,
-  query,
+  statement,
   output,
   overwrite,
   timeout,
   delimiter,
   headers,
 }) {
-  // connect to couchbase and execute the query
-  const cb = await connect({
-    cluster,
-    bucket,
+  const url = `${secure ? 'https' : 'http'}://${username}:${password}@${cluster}:${port}/query/service`
+  const body = {
+    statement,
+  }
+  // call the REST query endpoint
+  const { results } = await request(url, {
+    body,
+    json: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     timeout,
-    username,
-    password,
   })
-  const statement = N1qlQuery.fromString(query)
-  const results = await cb.queryAsync(statement)
 
   // output the results to csv file
   const csv = json2csv({

@@ -27,12 +27,12 @@
   "dependencies": {
     "babel-helpers": "6.24.1",
     "babel-runtime": "6.26.0",
-    "bluebird": "3.5.1",
     "commander": "2.14.1",
-    "couchbase": "2.4.3",
     "fs-extra": "5.0.0",
     "json2csv": "3.11.5",
     "ora": "1.4.0",
+    "request": "2.83.0",
+    "request-promise-native": "1.0.5",
     "update-notifier": "2.3.0"
   },
   "devDependencies": {

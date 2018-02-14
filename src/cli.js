@@ -3,7 +3,6 @@ import commander from 'commander'
 import ora from 'ora'
 import notifier from 'update-notifier'
 import n1ql2csv from './index'
-import { disconnect } from './db'
 import pkg from '../package.json'
 
 notifier({ pkg })
@@ -19,20 +18,28 @@ commander
     'localhost',
   )
   .option(
-    '-b, --bucket <s>',
-    'The bucket to use',
-    'default',
+    '-s, --secure <b>',
+    'Whether or not to use http(s)',
+    false,
+  )
+  .option(
+    '-p, --port <n>',
+    'The query port to use',
+    8093,
+    (val) => parseInt(val, 10),
   )
   .option(
     '-u, --username <s>',
-    'The RBAC username to use (only needed for Couchbase Server 5+)',
+    'Cluster Admin or RBAC username',
+    'Administrator',
   )
   .option(
     '-p, --password <s>',
-    'The bucket or RBAC password if applicable',
+    'Cluster Admin or RBAC password',
+    'password',
   )
   .option(
-    '-q, --query <s>',
+    '-s, --statement <s>',
     'A N1QL statement or file path to a N1QL query',
   )
   .option(
@@ -47,9 +54,9 @@ commander
   )
   .option(
     '-t, --timeout <n>',
-    'Timeout in seconds for the query',
+    'Timeout in milliseconds for the query',
     (val) => parseInt(val, 10),
-    10,
+    10000,
   )
   .option(
     '-d, --delimiter <s>',
@@ -74,11 +81,9 @@ export default async function () {
   try {
     await n1ql2csv(commander)
     spinner.stop()
-    await disconnect()
     process.exit(0)
   } catch (err) {
     spinner.stop()
-    await disconnect()
     // eslint-disable-next-line no-console
     console.error(`Error: ${err.message}`)
     process.exit(1)
