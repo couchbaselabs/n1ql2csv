@@ -2,7 +2,7 @@
 
 Executes a given N1QL query and exports the results as CSV
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/1p1N1w3o313p1t2I0R1B/Screen%20Recording%202018-02-09%20at%2010.23%20AM.gif?X-CloudApp-Visitor-Id=1639251&v=163cb047)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/1s0d3F3A2g3p0s1m3s1V/Screen%20Recording%202018-02-14%20at%2005.16%20PM.gif?X-CloudApp-Visitor-Id=1639251&v=57b3bdb8)
 
 ## Install
 
@@ -56,10 +56,9 @@ n1ql2csv --help
 ```bash
 n1ql2csv \
   --cluster localhost \
-  --bucket "travel-sample" \
   --username Administrator \
   --password password \
-  --query "SELECT airports.* FROM \`travel-sample\` AS airports WHERE type ='airport' ORDER BY airports.airportname ASC" \
-  --output test/blah.csv \
+  --statement "SELECT airportname, city, country, faa, icao, id, type, tz FROM \`travel-sample\` AS airports WHERE type ='airport' ORDER BY airportname ASC" \
+  --output somedir/results.csv \
   --overwrite true
 ```
